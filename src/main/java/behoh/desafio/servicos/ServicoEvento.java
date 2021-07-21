@@ -1,11 +1,13 @@
 package behoh.desafio.servicos;
 
+import java.text.ParseException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import behoh.desafio.dtos.EventoDto;
+import behoh.desafio.dtos.EventoNomeDto;
 import behoh.desafio.entidades.Evento;
 import behoh.desafio.entidades.Inscricao;
 import behoh.desafio.repositorios.EventoDAO;
@@ -21,7 +23,7 @@ public class ServicoEvento {
 	private InscricaoDAO repositorioInscricao;
 	
 	
-	public Evento adicionaEvento(EventoDto eventoDto) {
+	public Evento adicionaEvento(EventoDto eventoDto) throws ParseException {
 		
 		Evento evento = new Evento();
 		evento.setNome(eventoDto.getNome());
@@ -35,8 +37,8 @@ public class ServicoEvento {
 		
 	}
 	
-	public List<Inscricao> listarInscricoesEvento(String nomeEvento){
-		
+	public List<Inscricao> listarInscricoesEvento(EventoNomeDto eventoNomeDto){
+		String nomeEvento = eventoNomeDto.getNome();
 		Evento evento = repositorioEvento.findByNome(nomeEvento);
 		List<Inscricao> inscricoes = repositorioInscricao.findByEvento(evento);
 		
