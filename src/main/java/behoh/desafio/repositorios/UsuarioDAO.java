@@ -8,6 +8,8 @@ import behoh.desafio.entidades.Usuario;
 @Repository
 public interface UsuarioDAO extends JpaRepository<Usuario, Long>{
 	
+	Usuario findByNome(String nome);
+	
 	
 
 }

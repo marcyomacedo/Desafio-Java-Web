@@ -16,4 +16,29 @@ public class Usuario {
 	
 	private String nome;
 
+	public Long getId() {
+		return id;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+
+
+
+	public Usuario() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+	
+	
+	
+
 }

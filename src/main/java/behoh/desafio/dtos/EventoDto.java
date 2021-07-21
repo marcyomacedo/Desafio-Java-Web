@@ -1,33 +1,13 @@
-package behoh.desafio.entidades;
+package behoh.desafio.dtos;
 
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-@Entity
-@Table(name = "evento")
-public class Evento {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+public class EventoDto {
 	
 	private String nome;
 	private int vagas;
 	private Date dataHoraInicio;
 	private Date dataHoraFim;
-	
-	
-	
-	
-	
-	public Long getId() {
-		return id;
-	}
-
 	public String getNome() {
 		return nome;
 	}
@@ -52,15 +32,10 @@ public class Evento {
 	public void setDataHoraFim(Date dataHoraFim) {
 		this.dataHoraFim = dataHoraFim;
 	}
-
-
-	public Evento() {
+	public EventoDto() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-	
-	
 	
 	
 
