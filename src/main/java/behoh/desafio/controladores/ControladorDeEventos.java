@@ -34,9 +34,6 @@ public class ControladorDeEventos {
 		return new ResponseEntity<List<Inscricao>>(this.servicoEvento.listarInscricoesEvento(nomeEvento), HttpStatus.OK);
 	}
 	
-	
-	
-	
 
 
 	public ControladorDeEventos() {
