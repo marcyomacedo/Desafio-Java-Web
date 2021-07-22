@@ -11,9 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import behoh.desafio.dtos.EventoDto;
 import behoh.desafio.dtos.UsuarioDto;
-import behoh.desafio.entidades.Evento;
 import behoh.desafio.entidades.Inscricao;
 import behoh.desafio.entidades.Usuario;
 import behoh.desafio.servicos.ServicoUsuario;

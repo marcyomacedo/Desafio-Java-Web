@@ -8,9 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import behoh.desafio.dtos.InscricaoDto;
+import behoh.desafio.entidades.Entrada;
 import behoh.desafio.entidades.Evento;
 import behoh.desafio.entidades.Inscricao;
 import behoh.desafio.entidades.Usuario;
+import behoh.desafio.repositorios.EntradaDAO;
 import behoh.desafio.repositorios.EventoDAO;
 import behoh.desafio.repositorios.InscricaoDAO;
 import behoh.desafio.repositorios.UsuarioDAO;
@@ -26,6 +28,9 @@ public class ServicoInscricao {
 	
 	@Autowired
 	private UsuarioDAO repositorioUsuario;
+	
+	@Autowired
+	private EntradaDAO repositorioEntrada;
 	
 	
 	public Inscricao realizarInscricao(InscricaoDto inscricaoDto) throws ServletException {
@@ -60,7 +65,7 @@ public class ServicoInscricao {
 		
 	}
 	
-	public Inscricao cancelarInscricao(InscricaoDto inscricaoDto) {
+	public Inscricao cancelarInscricao(InscricaoDto inscricaoDto) throws ServletException {		
 		
 		String nomeEvento = inscricaoDto.getNomeEvento();
 		String nomeUsuario = inscricaoDto.getNomeUsuario();
@@ -68,13 +73,23 @@ public class ServicoInscricao {
 		Evento evento = repositorioEvento.findByNome(nomeEvento);
 		Usuario usuario = repositorioUsuario.findByNome(nomeUsuario);
 		Inscricao inscricao = repositorioInscricao.findByUsuarioAndEvento(usuario, evento);
+		Entrada entrada = repositorioEntrada.findByUsuarioAndEvento(usuario, evento);
+		Inscricao inscricaoEntrada = repositorioInscricao.findByUsuarioAndEvento(entrada.getUsuario(), entrada.getEvento());
 		
+		if(inscricao.equals(inscricaoEntrada)) {
+			throw new ServletException();	
+			
+		}else{			
+			
 		evento.setVagas(evento.getVagas() + 1);
 		repositorioEvento.save(evento);
 		
 		repositorioInscricao.delete(inscricao);
 		
 		return inscricao;
+		}
+		
+		
 		
 	}
 	
