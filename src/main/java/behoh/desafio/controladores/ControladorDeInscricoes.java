@@ -30,7 +30,7 @@ public class ControladorDeInscricoes {
 	}
 	
 	@DeleteMapping("/api/desafio/inscricoes")
-	public ResponseEntity<Inscricao> CancelarInscricao(@RequestBody InscricaoDto inscricaoDto) throws ParseException{
+	public ResponseEntity<Inscricao> CancelarInscricao(@RequestBody InscricaoDto inscricaoDto) throws ParseException, ServletException{
 		return new ResponseEntity<Inscricao>(this.servicoInscricao.cancelarInscricao(inscricaoDto), HttpStatus.OK);
 	}
 	
