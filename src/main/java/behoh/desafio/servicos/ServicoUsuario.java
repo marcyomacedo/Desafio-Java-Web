@@ -31,8 +31,9 @@ public class ServicoUsuario {
 		
 	}
 	
-	public List<Inscricao> listarInscricoesUsuario(String nomeUsuario){
+	public List<Inscricao> listarInscricoesUsuario(UsuarioDto usuarioDto){
 		
+		String nomeUsuario = usuarioDto.getNome();		
 		Usuario usuario = repositorioUsuario.findByNome(nomeUsuario);
 		List<Inscricao> inscricoes = repositorioInscricao.findByUsuario(usuario);
 		
